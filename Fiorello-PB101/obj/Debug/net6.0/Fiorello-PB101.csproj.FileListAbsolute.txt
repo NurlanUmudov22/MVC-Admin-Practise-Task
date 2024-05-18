@@ -745,3 +745,4 @@ C:\Users\ASUS\OneDrive\Рабочий стол\adminpanel\MVC-Fiorello-ProductPr
 C:\Users\ASUS\OneDrive\Рабочий стол\adminpanel\MVC-Fiorello-ProductPractise-BlogTask\Fiorello-PB101\obj\Debug\net6.0\Fiorello-PB101.pdb
 C:\Users\ASUS\OneDrive\Рабочий стол\adminpanel\MVC-Fiorello-ProductPractise-BlogTask\Fiorello-PB101\obj\Debug\net6.0\Fiorello-PB101.genruntimeconfig.cache
 C:\Users\ASUS\OneDrive\Рабочий стол\adminpanel\MVC-Fiorello-ProductPractise-BlogTask\Fiorello-PB101\obj\Debug\net6.0\ref\Fiorello-PB101.dll
+C:\Users\ASUS\OneDrive\Рабочий стол\adminpanel\MVC-Fiorello-ProductPractise-BlogTask\Fiorello-PB101\obj\Debug\net6.0\Fiorello-PB101.sourcelink.json

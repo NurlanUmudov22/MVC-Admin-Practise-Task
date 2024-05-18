@@ -10,5 +10,11 @@ namespace Fiorello_PB101.Services.Interfaces
 
         Task<Blog> GetByIdAsync(int? id);
 
+
+        Task<bool> ExistAsync(string title, string desc);
+
+        Task CreateAsync(Blog blog);
+
+        Task DeleteAsync(Blog blog);
     }
 }

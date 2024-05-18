@@ -14,27 +14,51 @@ namespace Fiorello_PB101.Services
         {
                 _context = context;
         }
+
+        public async Task CreateAsync(Blog blog)
+        {
+            await _context.AddAsync(blog);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Blog blog)
+        {
+                  _context.Blogs.Remove(blog);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistAsync(string name , string desc)
+        {
+            return await _context.Blogs.AnyAsync(m => m.Title.Trim() == name.Trim() ||
+                                                 m.Description.Trim() == desc.Trim());
+        }
+
         public async Task<IEnumerable<BlogVM>> GetAllAsync(int? take = null)
         {
             IEnumerable<Blog> blogs;
 
             if(take == null)
             {
-                blogs  = await _context.Blogs.ToListAsync();
+                blogs  = await _context.Blogs.OrderByDescending(m => m.Id).ToListAsync();
             }
             else
             {
-                blogs = await _context.Blogs.Take((int)take).ToListAsync();
+                blogs = await _context.Blogs.Take((int)take).OrderByDescending(m => m.Id).ToListAsync();
 
             }
 
-            return blogs.Select(m => new BlogVM {Title = m.Title, Description = m.Description, Image = m.Image, CreatedDate= m.CreatedDate.ToString("MM.dd.yyyy") });
+            return blogs.Select(m => new BlogVM {Id= m.Id,
+                                                 Title = m.Title, 
+                                                 Description = m.Description, 
+                                                 Image = m.Image,
+                                                 CreatedDate= m.CreatedDate.ToString("MM.dd.yyyy") 
+                                                 });
 
         }
 
         public async Task<Blog> GetByIdAsync(int? id)
         {
-            return await _context.Blogs.Where(m => m.Id == id).FirstOrDefaultAsync();
+            return await _context.Blogs.FindAsync(id);
         }
     }
 }
