@@ -1,5 +1,6 @@
 ﻿using Fiorello_PB101.Data;
 using Fiorello_PB101.Models;
+using Fiorello_PB101.Services;
 using Fiorello_PB101.Services.Interfaces;
 using Fiorello_PB101.ViewModels.Categories;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,16 @@ namespace Fiorello_PB101.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Detail(int? id)
+        {
+            Category categories = await _categoryService.GetByIdAsync(id);
+
+            return View(categories);
         }
     }
 }

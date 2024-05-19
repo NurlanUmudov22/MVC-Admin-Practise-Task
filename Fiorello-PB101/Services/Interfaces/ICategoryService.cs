@@ -10,7 +10,7 @@ namespace Fiorello_PB101.Services.Interfaces
 
 
         Task<IEnumerable<CategoryProductVM>> GetAllWithProductCountAsync();
-        Task<Category> GetByIdAsync(int id);
+        Task<Category> GetByIdAsync(int? id);
 
         Task<bool> ExistAsync(string name);
 

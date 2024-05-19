@@ -1,9 +1,11 @@
-﻿using Fiorello_PB101.Models;
+﻿using Fiorello_PB101.Data;
+using Fiorello_PB101.Models;
 using Fiorello_PB101.Services;
 using Fiorello_PB101.Services.Interfaces;
 using Fiorello_PB101.ViewModels.Blog;
 using Fiorello_PB101.ViewModels.Categories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiorello_PB101.Areas.Admin.Controllers
 {
@@ -13,10 +15,12 @@ namespace Fiorello_PB101.Areas.Admin.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
+        private readonly AppDbContext _context;
 
-        public BlogController(IBlogService blogService)
+        public BlogController(IBlogService blogService, AppDbContext context)
         {
             _blogService = blogService;
+            _context = context;
         }
 
 
@@ -86,10 +90,12 @@ namespace Fiorello_PB101.Areas.Admin.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> Detail()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Detail(int? id)
+        {
+            Blog blogs = await _blogService.GetByIdAsync(id);
+
+            return View(blogs);
+        }
     }
 }

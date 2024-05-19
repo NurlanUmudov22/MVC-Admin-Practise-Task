@@ -52,9 +52,9 @@ namespace Fiorello_PB101.Services
             });
         }
 
-        public async Task<Category> GetByIdAsync(int id)
+        public async Task<Category> GetByIdAsync(int? id)
         {
-            return await _context.Categories.FindAsync(id);
+            return await _context.Categories.Include(m => m.Products).ThenInclude(m=> m.ProductImages).FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

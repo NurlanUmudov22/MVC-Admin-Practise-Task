@@ -58,7 +58,7 @@ namespace Fiorello_PB101.Services
 
         public async Task<Blog> GetByIdAsync(int? id)
         {
-            return await _context.Blogs.FindAsync(id);
+            return await _context.Blogs.FirstOrDefaultAsync(m=> m.Id == id);
         }
     }
 }
